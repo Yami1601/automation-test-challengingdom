@@ -1,60 +1,93 @@
 package com.expleo.challengingdom.automation.pages;
 
-import java.util.List;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.By;
 
-public class ChallengingDomPage {
+import com.expleo.challengingdom.automation.constants.Constants;
+import com.expleo.challengingdom.automation.utils.Generic;
 
-	WebDriver driver;
-	WebDriverWait wait;
+public class ChallengingDomPage extends Generic {
 
-	@FindBy(xpath = "//h3[text()='Challenging DOM']")
-	WebElement title;
-
-	@FindBy(xpath = "//a[@class='button alert']")
-	WebElement alertButton;
-
-	@FindBy(xpath = "//a[@class='button success']")
-	WebElement successButton;
-
-	@FindBy(xpath = "//a[@class='button']")
-	WebElement bazButton;
-
-	@FindBy(xpath = "//div//p")
-	WebElement subTitle;
-
-	@FindBy(xpath = "//a[@href='https://github.com/tourdedave/the-internet']")
-	WebElement gitHubLink;
-
-	@FindBy(xpath = "//a[@href='#edit']")
-	List<WebElement> edit;
-
-	@FindBy(xpath = "//a[@href='#delete']")
-	List<WebElement> delete;
-
-	@FindBy(xpath = "//a[@href='http://elementalselenium.com/']")
-	WebElement seleniumLink;
-
-	public ChallengingDomPage(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-		wait = new WebDriverWait(driver, 10);
-	}
+	public static By challengingDomText = By.xpath("//h3[text()='Challenging DOM']");
+	public static By bazButton = By.xpath("//a[@class='button']");
+	public static By alertButton = By.xpath("//a[@class='button alert']");
+	public static By successButton = By.xpath("//a[@class='button success']");
+	public static By githubLink = By.xpath("//img[@alt='Fork me on GitHub']");
+	public static By footerLink = By.xpath("//a[@target='_blank']");
+	public static By footerText = By.xpath("//div[text()='Powered by ']");
+	public static By loremText = By.xpath("//th[text()='Lorem']");
+	public static By ipsumText = By.xpath("//th[text()='Ipsum']");
+	public static By dolarText = By.xpath("//th[text()='Dolor']");
+	public static By sitText = By.xpath("//th[text()='Sit']");
+	public static By ametText = By.xpath("//th[text()='Amet']");
+	public static By diceretText = By.xpath("//th[text()='Diceret']");
+	public static By actionText = By.xpath("//th[text()='Action']");
 
 	public void verifyTitle() {
 
-		wait.until(ExpectedConditions.visibilityOf(title));
-		Assert.assertTrue("Title is not displayed", title.isDisplayed());
+		Assert.assertTrue("Title is not displayed", driver.findElement(challengingDomText).isDisplayed());
 	}
 
 	public void verifyButtons() {
-		wait.until(ExpectedConditions.visibilityOf(title));
-		Assert.assertTrue("Alert button is not displayed", alertButton.isDisplayed());
+
+		Assert.assertTrue("Baz Button is not visible", validateButton(ChallengingDomPage.bazButton));
+		Assert.assertTrue("Alert Button is not visible", validateButton(ChallengingDomPage.alertButton));
+		Assert.assertTrue("Success Button is not visible", validateButton(ChallengingDomPage.successButton));
+	}
+
+	public void verifyButtonIsClickable() {
+
+		Assert.assertTrue("Baz Button is not clickable", validateButtonIsEnabled(ChallengingDomPage.bazButton));
+		Assert.assertTrue("Alert Button is not clickable", validateButtonIsEnabled(ChallengingDomPage.alertButton));
+		Assert.assertTrue("Success Button is not clickable", validateButtonIsEnabled(ChallengingDomPage.successButton));
+	}
+
+	public void clickOnTheGitHubLink() {
+		driver.findElement(githubLink).click();
+	}
+
+	public void verifyGitHubLinkText(String message) {
+		Assert.assertEquals("", message, driver.findElement(githubLink).getAttribute("alt"));
+	}
+
+	public void clickOnTheFooterLink() {
+		driver.findElement(footerLink).click();
+	}
+
+	public void verifyFooterText() {
+		Assert.assertTrue("Footer text is not displayed", getText(footerText).contains("Powered by "));
+	}
+
+	public void verifyTableHeaders() {
+		
+		Assert.assertTrue("Lorem text is not displayed", getText(loremText).equals(Constants.LOREM));
+		
+		//pending other rows validation
+ 
+	}
+	
+	public void verifyEditAndDeleteLink()
+	{
+		for (int i = 1; i <= 10; i++) {
+
+           Assert.assertTrue("Edit and Delete in Row " +i+ "is not displayed", driver.findElement(By.xpath("(//a[text()='edit'])[" + i + "]")).isDisplayed() && (driver.findElement(By.xpath("(//a[text()='delete'])[" + i + "]"))).isDisplayed());
+            
+		}
+
+   
+	}
+	
+	public void verifyRowsOfTable()
+	{
+		
+		 for (int i = 0; i <= 9; i++) {
+          
+           Assert.assertTrue("Row " +i+1+ "is not displayed", driver.findElement(By.xpath("//td[text()='Iuvaret" + i + "'" + "]")).isDisplayed());
+             
+
+            
+         }
+		
+		
 	}
 }

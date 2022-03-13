@@ -13,7 +13,5 @@ import io.cucumber.junit.CucumberOptions;
         publish = true,
         tags = "@DomApplicationValidation")
 public class Runner {
-	
-	
 
 }
