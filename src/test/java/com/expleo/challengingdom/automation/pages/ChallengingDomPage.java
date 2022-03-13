@@ -17,7 +17,7 @@ public class ChallengingDomPage extends Generic {
 	public static By footerText = By.xpath("//div[text()='Powered by ']");
 	public static By loremText = By.xpath("//th[text()='Lorem']");
 	public static By ipsumText = By.xpath("//th[text()='Ipsum']");
-	public static By dolarText = By.xpath("//th[text()='Dolor']");
+	public static By dolorText = By.xpath("//th[text()='Dolor']");
 	public static By sitText = By.xpath("//th[text()='Sit']");
 	public static By ametText = By.xpath("//th[text()='Amet']");
 	public static By diceretText = By.xpath("//th[text()='Diceret']");
@@ -59,35 +59,36 @@ public class ChallengingDomPage extends Generic {
 	}
 
 	public void verifyTableHeaders() {
-		
+
 		Assert.assertTrue("Lorem text is not displayed", getText(loremText).equals(Constants.LOREM));
-		
-		//pending other rows validation
- 
+		Assert.assertTrue("Ipsum text is not displayed", getText(ipsumText).equals(Constants.IPSUM));
+		Assert.assertTrue("Dolor text is not displayed", getText(dolorText).equals(Constants.DOLOR));
+		Assert.assertTrue("Sit text is not displayed", getText(sitText).equals(Constants.SIT));
+		Assert.assertTrue("Amet text is not displayed", getText(ametText).equals(Constants.AMET));
+		Assert.assertTrue("Diceret text is not displayed", getText(diceretText).equals(Constants.DICERET));
+		Assert.assertTrue("Action text is not displayed", getText(actionText).equals(Constants.ACTION));
+
 	}
-	
-	public void verifyEditAndDeleteLink()
-	{
+
+	public void verifyEditAndDeleteLink() {
 		for (int i = 1; i <= 10; i++) {
 
-           Assert.assertTrue("Edit and Delete in Row " +i+ "is not displayed", driver.findElement(By.xpath("(//a[text()='edit'])[" + i + "]")).isDisplayed() && (driver.findElement(By.xpath("(//a[text()='delete'])[" + i + "]"))).isDisplayed());
-            
+			Assert.assertTrue("Edit and Delete in Row " + i + "is not displayed",
+					driver.findElement(By.xpath("(//a[text()='edit'])[" + i + "]")).isDisplayed()
+							&& (driver.findElement(By.xpath("(//a[text()='delete'])[" + i + "]"))).isDisplayed());
+
 		}
 
-   
 	}
-	
-	public void verifyRowsOfTable()
-	{
-		
-		 for (int i = 0; i <= 9; i++) {
-          
-           Assert.assertTrue("Row " +i+1+ "is not displayed", driver.findElement(By.xpath("//td[text()='Iuvaret" + i + "'" + "]")).isDisplayed());
-             
 
-            
-         }
-		
-		
+	public void verifyRowsOfTable() {
+
+		for (int i = 0; i <= 9; i++) {
+
+			Assert.assertTrue("Row " + i + 1 + "is not displayed",
+					driver.findElement(By.xpath("//td[text()='Iuvaret" + i + "'" + "]")).isDisplayed());
+
+		}
+
 	}
 }

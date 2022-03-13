@@ -9,7 +9,7 @@ public class Generic {
 	
 	public static WebDriver driver; 
 	
-	 public boolean validateButton(By object)
+	public boolean validateButton(By object)
 	    {
 	      
 	        return driver.findElement(object).isDisplayed();

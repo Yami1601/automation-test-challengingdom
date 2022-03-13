@@ -12,7 +12,7 @@ Feature: Validate Challenging dom application
     Then user should be on the home page
     And user should see all the three buttons
    
-     @DomApplicationValidation @ApplicationButtonValidation
+  @DomApplicationValidation @ApplicationButtonValidation
   Scenario: To validate all the three buttons are clickable in application homepage
     Then user should be on the home page
     And user should be able to click all the three buttons
@@ -28,28 +28,28 @@ Feature: Validate Challenging dom application
     Then user should be on the home page
     And user should see "Fork me on GitHub" text on the page
     
- @DomApplicationValidation @FooterLinkValidation
+  @DomApplicationValidation @FooterLinkValidation
   Scenario: To validate user should navigate to element Selenium page on clicking footer link
     Then user should be on the home page
     And user clicks on the footer link
     Then user should navigate to element selenium page    
     
- @DomApplicationValidation @FooterTextValidation
+  @DomApplicationValidation @FooterTextValidation
   Scenario: To validate footer text is present in application homepage
     Then user should be on the home page
     And user should see the footer text
     
-     @DomApplicationValidation @TableHeaderTextValidation
+  @DomApplicationValidation @TableHeaderTextValidation
   Scenario: To validate header of the table on the application
     Then user should be on the home page
     Then user should see the correct header of the table on the page
     
-      @DomApplicationValidation @TableRowsValidation
+  @DomApplicationValidation @TableRowsValidation
   Scenario: To validate table should have ten rows
     Then user should be on the home page
     Then user should see ten rows of data in the table
     
-     @DomApplicationValidation @EditAndDeleteLinkValidation
+  @DomApplicationValidation @EditAndDeleteLinkValidation
   Scenario: To validate edit and delete link is present for each rows in the table
     Then user should be on the home page
     Then user should see delete and edit link on the page
